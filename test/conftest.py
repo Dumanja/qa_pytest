@@ -10,7 +10,7 @@ def initialize_driver(request):
     if browser_name == "chrome":
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("--disable-extensions")
-
+        chrome_options.add_argument("--lang=en-EN")
         web_driver = webdriver.Chrome(options=chrome_options)
     request.cls.driver = web_driver
     yield
