@@ -2,18 +2,19 @@ import pytest
 from selenium import webdriver
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="class")
 def initialize_driver(request):
     browser_name = request.config.getoption("--browser")
-    driver = None
+    web_driver = None
 
-    if browser_name == "Chrome":
+    if browser_name == "chrome":
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("--disable-extensions")
 
-        driver = webdriver.Chrome(options=chrome_options)
-    yield driver
-    driver.quit()
+        web_driver = webdriver.Chrome(options=chrome_options)
+    request.cls.driver = web_driver
+    yield
+    web_driver.quit()
 
 
 def pytest_addoption(parser):
