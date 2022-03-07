@@ -1,20 +1,18 @@
-import time
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
+from test.BaseTest import BaseTest
+from test.POM.MainPageTest import MainPage
 
 
-def test_first_example(initialize_driver):
-    driver = initialize_driver
+class SearchTest(BaseTest):
 
-    locator_for_search = "//input[@title='Search']"
+    def test_first_example(self):
+        main_object = MainPage(self.driver)
 
-    driver.get("https://www.google.com/")
-    google_search = driver.find_element(By.XPATH, locator_for_search)
-    google_search.click()
-    google_search.send_keys("qa kursevi")
+        main_object.get_main_page_and_search()
 
-    time.sleep(5)
+    def test_second_example(self):
+        main_object = MainPage(self.driver)
 
-    google_search.send_keys(Keys.ENTER)
+        main_object.get_main_page_and_search()
 
-    time.sleep(5)
+    def test_third_example(self):  # ovo mi svejedno i ne treba, jer ce sve ici preko POMa i u BasePage cu napraviti custom f-je
+        self.driver.get("https://zlatiborbooking.rs/")
